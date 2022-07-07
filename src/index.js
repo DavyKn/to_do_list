@@ -1,6 +1,4 @@
-import _ from 'lodash';
 import './style.css';
-import refresh from './refresh.png';
 
 const toDos = [
   {
@@ -36,9 +34,7 @@ toDos.forEach((todo) => {
   txtInput.checked = todo.completed;
   const wrtTodo = document.createElement('span');
   wrtTodo.innerText = todo.description;
-  li.append(txtInput,wrtTodo);
+  li.append(txtInput, wrtTodo);
 
   ul.appendChild(li);
 });
-
-
