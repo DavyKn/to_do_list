@@ -47,11 +47,11 @@ export const createToDo = ({ description, completed, index }) => {
   return { description, completed, index };
 };
 
- export  const refreshToDos = () => {
-    let child = ul.lastElementChild;
-    while (child) {
-      ul.removeChild(child);
-      child = ul.lastElementChild;
-    }
-    getToDos().forEach(createToDo);
-  };
+export const refreshToDos = () => {
+  let child = ul.lastElementChild;
+  while (child) {
+    ul.removeChild(child);
+    child = ul.lastElementChild;
+  }
+  getToDos().forEach(createToDo);
+};

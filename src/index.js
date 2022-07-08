@@ -3,15 +3,15 @@ import refresh from './assets/refresh.png';
 
 import { getToDos, addToDo, createToDo } from './module/script.js';
 
-  const titleDiv = document.querySelector('.title_class');
-  const input = document.querySelector('.desc');
+const titleDiv = document.querySelector('.title_class');
+const input = document.querySelector('.desc');
 
-  const refreshB = document.createElement('img');
-  refreshB.classList.add('reload');
-  refreshB.setAttribute('src', refresh);
-  titleDiv.appendChild(refreshB);
+const refreshB = document.createElement('img');
+refreshB.classList.add('reload');
+refreshB.setAttribute('src', refresh);
+titleDiv.appendChild(refreshB);
 
-  getToDos().forEach(createToDo);
+getToDos().forEach(createToDo);
 input.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     const completed = false;

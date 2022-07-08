@@ -30,12 +30,6 @@ body {
   font-style: italic;
 }
 
-.todo_list li {
-  display: flex;
-  list-style: none;
-  align-items: center;
-}
-
 li {
   /* width: 100%; */
   display: flex;
@@ -43,6 +37,12 @@ li {
   border-bottom: 1px solid #d3d3d3;
   padding: 10px 20px;
   position: relative;
+}
+
+.todo_list li {
+  display: flex;
+  list-style: none;
+  align-items: center;
 }
 
 .btn_remove {
