@@ -1,40 +1,24 @@
 import './style.css';
+import refresh from './assets/refresh.png';
 
-const toDos = [
-  {
-    description: 'go to town',
-    completed: true,
-    index: 0,
-  },
-  {
-    description: 'visit my grandpa',
-    completed: true,
-    index: 1,
-  },
+import { getToDos, addToDo, createToDo } from './module/script.js';
 
-  {
-    description: 'call my mum',
-    completed: false,
-    index: 2,
-  },
+  const titleDiv = document.querySelector('.title_class');
+  const input = document.querySelector('.desc');
 
-  {
-    description: 'clean my house',
-    completed: true,
-    index: 3,
-  },
-];
+  const refreshB = document.createElement('img');
+  refreshB.classList.add('reload');
+  refreshB.setAttribute('src', refresh);
+  titleDiv.appendChild(refreshB);
 
-const ul = document.getElementById('todo_list');
-
-toDos.forEach((todo) => {
-  const li = document.createElement('li');
-  const txtInput = document.createElement('INPUT');
-  txtInput.setAttribute('type', 'checkbox');
-  txtInput.checked = todo.completed;
-  const wrtTodo = document.createElement('span');
-  wrtTodo.innerText = todo.description;
-  li.append(txtInput, wrtTodo);
-
-  ul.appendChild(li);
+  getToDos().forEach(createToDo);
+input.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    const completed = false;
+    const description = document.querySelector('.desc').value;
+    const index = getToDos().length + 1;
+    const newTodo = createToDo({ description, completed, index });
+    addToDo(newTodo);
+    input.value = '';
+  }
 });
