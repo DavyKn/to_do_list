@@ -1,6 +1,11 @@
+import deleteIcon from './assets/deleteIcon.png';
+
 const ul = document.getElementById('todo_list');
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 export const getToDos = () => todos;
+export const setToDos = (newTodos) => {
+  todos = newTodos;
+};
 
 export const addToDo = (todo) => {
   const txtInput = {
@@ -14,6 +19,12 @@ export const addToDo = (todo) => {
   return txtInput;
 };
 
+export const removeTodos = (predicate, todos) =>
+  todos.filter(predicate).map((todo, index) => {
+    todo.index = index + 1;
+    return todo;
+  });
+
 export const createToDo = ({ description, completed, index }) => {
   const li = document.createElement('li');
   const checkBox = document.createElement('input');
@@ -22,12 +33,23 @@ export const createToDo = ({ description, completed, index }) => {
   item.classList.add('content');
   item.appendChild(document.createTextNode(description));
   item.contentEditable = true;
-  const removeBtn = document.createElement('button');
+  const removeBtn = document.createElement('input');
+  removeBtn.setAttribute('type','image');
+  removeBtn.setAttribute('src',deleteIcon);
   removeBtn.classList.add('btn_remove');
-  removeBtn.innerHTML = '&#x3A7';
   li.append(checkBox, item, removeBtn);
 
   ul.appendChild(li);
+  checkBox.addEventListener('change', () => {
+    const todo = todos.find((todo) => todo.index === index);
+
+    if (checkBox.checked) {
+      todo.completed = true;
+    } else {
+      todo.completed = false;
+    }
+    localStorage.setItem('todos', JSON.stringify(todos));
+  });
   item.addEventListener('input', (e) => {
     const todo = todos.find((todo) => todo.index === index);
     todo.description = e.target.outerText;
@@ -35,12 +57,9 @@ export const createToDo = ({ description, completed, index }) => {
   });
   removeBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    const newTodos = todos.filter((todo) => todo.index !== index).map((todo, index) => {
-      todo.index = index + 1;
-      return todo;
-    });
-    localStorage.setItem('todos', JSON.stringify(newTodos));
-    todos = newTodos;
+    const newTodos = removeTodos((todo) => todo.index !== index, todos);
+    localStorage.setItem("todos", JSON.stringify(newTodos));
+    setToDos(newTodos);
     // eslint-disable-next-line no-use-before-define
     refreshToDos();
   });

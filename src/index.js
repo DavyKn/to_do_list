@@ -2,8 +2,10 @@ import './style.css';
 import refresh from './assets/refresh.png';
 
 import { getToDos, addToDo, createToDo } from './module/script.js';
+import clearToDoItems from './module/interactive.js';
 
 const titleDiv = document.querySelector('.title_class');
+const clearCompleted = document.querySelector('.clear');
 const input = document.querySelector('.desc');
 
 const refreshB = document.createElement('img');
@@ -22,3 +24,7 @@ input.addEventListener('keypress', (e) => {
     input.value = '';
   }
 });
+
+clearCompleted.addEventListener('click', clearToDoItems);
+
+
