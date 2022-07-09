@@ -26,5 +26,3 @@ input.addEventListener('keypress', (e) => {
 });
 
 clearCompleted.addEventListener('click', clearToDoItems);
-
-

@@ -1,4 +1,4 @@
-import deleteIcon from './assets/deleteIcon.png';
+import deleteIcon from '../assets/deleteIcon.png';
 
 const ul = document.getElementById('todo_list');
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -19,11 +19,10 @@ export const addToDo = (todo) => {
   return txtInput;
 };
 
-export const removeTodos = (predicate, todos) =>
-  todos.filter(predicate).map((todo, index) => {
-    todo.index = index + 1;
-    return todo;
-  });
+export const removeTodos = (predicate, todos) => todos.filter(predicate).map((todo, index) => {
+  todo.index = index + 1;
+  return todo;
+});
 
 export const createToDo = ({ description, completed, index }) => {
   const li = document.createElement('li');
@@ -34,8 +33,8 @@ export const createToDo = ({ description, completed, index }) => {
   item.appendChild(document.createTextNode(description));
   item.contentEditable = true;
   const removeBtn = document.createElement('input');
-  removeBtn.setAttribute('type','image');
-  removeBtn.setAttribute('src',deleteIcon);
+  removeBtn.setAttribute('type', 'image');
+  removeBtn.setAttribute('src', deleteIcon);
   removeBtn.classList.add('btn_remove');
   li.append(checkBox, item, removeBtn);
 
@@ -58,7 +57,7 @@ export const createToDo = ({ description, completed, index }) => {
   removeBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const newTodos = removeTodos((todo) => todo.index !== index, todos);
-    localStorage.setItem("todos", JSON.stringify(newTodos));
+    localStorage.setItem('todos', JSON.stringify(newTodos));
     setToDos(newTodos);
     // eslint-disable-next-line no-use-before-define
     refreshToDos();
