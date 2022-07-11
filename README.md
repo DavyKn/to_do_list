@@ -21,6 +21,7 @@
 - GitHub: [@DavyKn](https://github.com/DavyKn)
 - Twitter: [@davykk04](https://twitter.com/davykk04)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/davis-katana-246600159/)
+- live site https://davykn.github.io/to_do_list/
 
 ## 🤝 Contributing
 
